@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Type-check & build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Type-check & production build
+        run: npm run build
+
+      - name: Verify deploy output
+        run: |
+          test -f dist/index.html || (echo "missing homepage" && exit 1)
+          test -f dist/admin/index.html || (echo "missing admin app" && exit 1)
+          test -f dist/hydrate.js || (echo "missing hydrate script" && exit 1)
+          echo "Build output verified: / homepage + /admin CMS"
