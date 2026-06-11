@@ -37,7 +37,7 @@ export function ServicesEditor() {
   return (
     <EditorShell
       title="Services"
-      description="Edit the four service cards shown on the homepage."
+      description="Edit the eight service cards shown on the homepage (Close Protection and Residential & Estate Security sections)."
       dirty={dirty}
       busy={busy}
       error={error}
