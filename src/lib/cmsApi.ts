@@ -239,13 +239,14 @@ export type ServiceRow = {
   title: string
   description: string | null
   icon: string | null
+  href: string | null
   sort_order: number
 }
 
 export async function fetchServices(): Promise<ServiceRow[] | null> {
   const { data, error } = await supabase
     .from('services')
-    .select('id,title,description,icon,sort_order')
+    .select('id,title,description,icon,href,sort_order')
     .order('sort_order')
   return error ? null : (data as ServiceRow[])
 }
@@ -254,7 +255,7 @@ export async function saveServices(rows: ServiceRow[]): Promise<Result> {
   for (const r of rows) {
     const { error } = await supabase
       .from('services')
-      .update({ title: r.title, description: r.description })
+      .update({ title: r.title, description: r.description, icon: r.icon, href: r.href })
       .eq('id', r.id)
     if (error) return { ok: false, error: error.message }
   }
@@ -624,10 +625,13 @@ export async function inviteUser(
   email: string,
   role: ProfileRow['role'],
 ): Promise<Result> {
-  const { error } = await supabase
-    .from('profiles')
-    .insert({ name, email, role, status: 'invited' })
+  // The edge function sends a real invite email (service role) and creates
+  // the linked profile row; admin-only, enforced server-side.
+  const { data, error } = await supabase.functions.invoke('invite-user', {
+    body: { name, email, role, redirectTo: `${location.origin}/admin` },
+  })
   if (error) return { ok: false, error: error.message }
+  if (data?.error) return { ok: false, error: data.error }
   void logAudit('invite', 'Users', `Invited ${email} as ${role}`)
   return { ok: true }
 }

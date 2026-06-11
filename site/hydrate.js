@@ -63,13 +63,18 @@
   });
 
   // ----- Services -----
-  get('services?select=title,description&order=sort_order').then(function (rows) {
+  get('services?select=title,description,href&order=sort_order').then(function (rows) {
     if (!rows) return;
     var cards = document.querySelectorAll('.services-grid .card');
     rows.forEach(function (s, i) {
       if (!cards[i]) return;
       setText(cards[i].querySelector('h3'), s.title);
       setText(cards[i].querySelector('.desc'), s.description);
+      if (s.href) {
+        cards[i].querySelectorAll('a.learn, a.arrow-btn').forEach(function (a) {
+          a.setAttribute('href', s.href);
+        });
+      }
     });
   });
 

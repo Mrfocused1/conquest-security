@@ -62,10 +62,6 @@ export function SectionList({ onEdit }: { onEdit?: (key: string) => void }) {
             Drag and reorder sections to change their order on the homepage.
           </p>
         </div>
-        <button className="btn-white ml-auto">
-          <Icon name="plus" size={16} />
-          Add New Section
-        </button>
       </div>
 
       <ul className="divide-y divide-white/[0.05]">
@@ -116,18 +112,6 @@ export function SectionList({ onEdit }: { onEdit?: (key: string) => void }) {
                 className="rounded-lg border border-white/[0.08] px-3 py-1.5 text-[13px] font-medium text-t2 transition-colors duration-150 hover:border-white/20 hover:text-white"
               >
                 Edit
-              </button>
-              <button
-                className="grid h-8 w-8 place-items-center rounded-lg text-t3 transition-colors duration-150 hover:bg-white/[0.05] hover:text-white"
-                aria-label="Duplicate"
-              >
-                <Icon name="copy" size={16} />
-              </button>
-              <button
-                className="grid h-8 w-8 place-items-center rounded-lg text-t3 transition-colors duration-150 hover:bg-white/[0.05] hover:text-white"
-                aria-label="More actions"
-              >
-                <Icon name="dots" size={18} strokeW={2} />
               </button>
             </div>
           </li>

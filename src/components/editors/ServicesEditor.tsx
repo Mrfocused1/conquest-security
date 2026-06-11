@@ -65,6 +65,16 @@ export function ServicesEditor() {
               value={s.description ?? ''}
               onChange={(e) => update(s.id, { description: e.target.value })}
             />
+            <div className="mt-3">
+              <FieldLabel htmlFor={`h-${s.id}`}>Link (Learn more)</FieldLabel>
+              <input
+                id={`h-${s.id}`}
+                className="input-field"
+                placeholder="#contact"
+                value={s.href ?? ''}
+                onChange={(e) => update(s.id, { href: e.target.value })}
+              />
+            </div>
           </div>
         ))}
       </div>
