@@ -71,7 +71,7 @@ export const QUICK_ACTIONS: { key: NavKey; label: string; icon: string }[] = [
 ]
 
 export const RECENT_CHANGES = [
-  { who: 'Admin User', what: 'Hero Section updated', when: '2 hours ago', icon: 'hero' },
-  { who: 'Sarah Chen', what: 'Services updated', when: 'Yesterday', icon: 'services' },
-  { who: 'Admin User', what: 'Impact Metrics updated', when: '2 days ago', icon: 'impact' },
+  { who: 'Admin', what: 'Hero Section updated', when: 'recently', icon: 'hero' },
+  { who: 'Admin', what: 'Services updated', when: 'recently', icon: 'services' },
+  { who: 'Admin', what: 'Impact Metrics updated', when: 'recently', icon: 'impact' },
 ]

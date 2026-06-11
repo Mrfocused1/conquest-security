@@ -209,7 +209,7 @@ export default function App() {
                 AD
               </span>
               <div className="min-w-0">
-                <div className="truncate text-[15px] font-semibold text-white">Admin User</div>
+                <div className="truncate text-[15px] font-semibold text-white">Administrator</div>
                 <div className="truncate text-[13px] text-t3">{session.user.email}</div>
               </div>
             </div>

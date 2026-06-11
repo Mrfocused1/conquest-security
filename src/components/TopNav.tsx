@@ -81,8 +81,8 @@ export function TopNav({ title, subtitle, onSettings, onSignOut, email }: Props)
                   AD
                 </span>
                 <div className="min-w-0">
-                  <div className="truncate text-[14px] font-semibold text-white">Admin User</div>
-                  <div className="truncate text-[12px] text-t3">{email ?? 'admin@conquest.com'}</div>
+                  <div className="truncate text-[14px] font-semibold text-white">Administrator</div>
+                  <div className="truncate text-[12px] text-t3">{email ?? ''}</div>
                 </div>
               </div>
               <div className="p-1.5">

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Icon, Mark } from './Icon'
 import { NAV, type NavKey } from '../data/nav'
+import { useAuth } from '../store/auth'
 
 type Props = {
   active: NavKey
@@ -8,6 +9,7 @@ type Props = {
 }
 
 export function Sidebar({ active, onNavigate }: Props) {
+  const { session } = useAuth()
   const [openContent, setOpenContent] = useState(true)
   const contentKeys = NAV.find((n) => n.children)?.children?.map((c) => c.key) ?? []
   const inContent = contentKeys.includes(active)
@@ -97,8 +99,8 @@ export function Sidebar({ active, onNavigate }: Props) {
             AD
           </span>
           <span className="min-w-0 flex-1">
-            <span className="block truncate text-[13.5px] font-semibold text-white">Admin User</span>
-            <span className="block truncate text-[12px] text-t3">admin@conquest.com</span>
+            <span className="block truncate text-[13.5px] font-semibold text-white">Administrator</span>
+            <span className="block truncate text-[12px] text-t3">{session?.user.email}</span>
           </span>
           <Icon name="chevronDown" size={16} className="text-t3" />
         </button>
